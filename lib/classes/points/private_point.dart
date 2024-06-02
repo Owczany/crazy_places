@@ -25,11 +25,11 @@ class PrivatePoint extends LocationPoint {
     return 'PrivatePoint(lat: $lat, lang: $lang, pathLogo: $pathLogo, name: $name, description: $description)';
   }
 
-  Future<int> fetchData(double latitude, double longitude) async {
+  Future<int> fetchData() async {
 
     try {
       var url = Uri.parse(
-          'https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=$APIKEY');
+          'https://api.waqi.info/feed/geo:${this.lat};${this.lang}/?token=$APIKEY');
       var response = await http.get(url).timeout(const Duration(seconds: 5));
       if (response.statusCode == 200) {
         AirQuality airQuality = AirQuality.fromJson(jsonDecode(response.body));
