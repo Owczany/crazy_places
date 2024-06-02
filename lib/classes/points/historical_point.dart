@@ -1,4 +1,5 @@
 import 'package:crazy_places/classes/points/location_point.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class HistoricalPoint extends LocationPoint{
   String description;
@@ -21,6 +22,13 @@ class HistoricalPoint extends LocationPoint{
   @override
   String toString() {
     return 'HistoricalPoint(lat: $lat, lang: $lang, pathLogo: $pathLogo, name: $name, description: $description, musicPath: $musicPath)';
+  }
+
+  Future<void> playSound() async { //puszczanie dzwieku po sciezce
+    AudioPlayer audioPlayer = AudioPlayer();
+    print("dzwiek zaczety");
+    await audioPlayer.play(AssetSource(this.musicPath));
+    print("dzwiek zakonczony");
   }
 
 }
