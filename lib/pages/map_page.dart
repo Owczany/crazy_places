@@ -1,3 +1,4 @@
+import 'package:crazy_places/classes/points/location_point.dart';
 import 'package:crazy_places/points_data/fp_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -21,7 +22,7 @@ class _MapPageState extends State<MapPage> {
   );
 
   GeoPoint? userLocation;
-  List<GeoPoint> markers = [];
+  List<LocationPoint> markers = [];
 
   Future<void> _getUserLocation() async {
     bool serviceEnabled;
@@ -66,9 +67,7 @@ class _MapPageState extends State<MapPage> {
               color: Colors.blue,
               size: 20,
             ),
-          ));
-      markers.add(userLocation!);
-
+          ),);
       for (var historicalPoint in historicalPoints) {
         final point = GeoPoint(
           latitude: historicalPoint.lat,
@@ -76,15 +75,11 @@ class _MapPageState extends State<MapPage> {
         );
         await controller.addMarker(
           point,
-          markerIcon: const MarkerIcon(
-            icon: Icon(
-              Icons.mosque_rounded,
-              color: Colors.red,
-              size: 40,
-            ),
+          markerIcon: MarkerIcon(
+            icon: historicalPoint.icon,
           ),
         );
-        markers.add(point);
+        markers.add(historicalPoint);
       }
       for (var funnyPoint in funnyPoints) {
         final point = GeoPoint(
@@ -93,36 +88,32 @@ class _MapPageState extends State<MapPage> {
         );
         await controller.addMarker(
           point,
-          markerIcon: const MarkerIcon(
-            icon: Icon(
-              Icons.forest_rounded,
-              color: Colors.green,
-              size: 40,
-            ),
+          markerIcon: MarkerIcon(
+            icon: funnyPoint.icon,
           ),
         );
-        markers.add(point);
+        markers.add(funnyPoint);
       }
     }
   }
 
   void _checkMarkerClick(GeoPoint point) {
     for (var marker in markers) {
-      if ((point.latitude - marker.latitude).abs() < 0.2 &&
-          (point.longitude - marker.longitude).abs() < 0.2) {
-        _showMarkerDialog();
+      if ((point.latitude - marker.lat).abs() < 0.2 &&
+          (point.longitude - marker.lang).abs() < 0.2) {
+        _showMarkerDialog(marker.name, "elo");
         break;
       }
     }
   }
 
-  void _showMarkerDialog() {
+  void _showMarkerDialog(String? placeName, String? description) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Marker Clicked'),
-          content: const Text('You clicked on a marker!'),
+          title: Text(placeName ?? 'Coś poszło nie tak'),
+          content: Text(description ?? 'Coś poszło nie tak'),
           actions: <Widget>[
             TextButton(
               child: const Text('OK'),
