@@ -1,6 +1,5 @@
 import 'package:crazy_places/pages/history_page.dart';
 import 'package:crazy_places/pages/home_page.dart';
-import 'package:crazy_places/pages/map_page.dart';
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -31,7 +30,7 @@ class _NavigationPageState extends State<NavigationPage> {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        children: const <Widget>[MapPage(), HomePage(), HistoryPage()],
+        children: const <Widget>[/*MapPage(),*/ HomePage(), HistoryPage()],
         onPageChanged: (index) {
           setState(() {
             _currentPageIndex = index;
@@ -41,10 +40,10 @@ class _NavigationPageState extends State<NavigationPage> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentPageIndex,
         destinations: const <NavigationDestination>[
-          NavigationDestination(
-            icon: Icon(Icons.map),
-            label: "Map",
-          ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.map),
+          //   label: "Map",
+          // ),
           NavigationDestination(
             icon: Icon(Icons.home),
             label: "Home",

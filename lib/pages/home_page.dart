@@ -1,3 +1,4 @@
+import 'package:crazy_places/pages/map_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +14,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Container(
         color: Colors.green,
+        child: Center(
+          child: ElevatedButton(
+              onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MapPage()),
+                  ),
+              child: const Text("Mapa")),
+        ),
       ),
     );
   }
