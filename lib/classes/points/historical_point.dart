@@ -1,5 +1,6 @@
 import 'package:crazy_places/classes/points/location_point.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/material.dart';
 
 class HistoricalPoint extends LocationPoint{
   String description;
@@ -8,20 +9,20 @@ class HistoricalPoint extends LocationPoint{
   HistoricalPoint({
     required double lat,
     required double lang,
-    required String pathLogo,
+    required Icon icon,
     required String name,
     required this.description,
     required this.musicPath,
   }) : super(
     lat: lat,
     lang: lang,
-    pathLogo: pathLogo,
+    icon: icon,
     name: name,
   );
 
   @override
   String toString() {
-    return 'HistoricalPoint(lat: $lat, lang: $lang, pathLogo: $pathLogo, name: $name, description: $description, musicPath: $musicPath)';
+    return 'HistoricalPoint(lat: $lat, lang: $lang, pathLogo: $icon, name: $name, description: $description, musicPath: $musicPath)';
   }
 
   Future<void> playSound() async { //puszczanie dzwieku po sciezce

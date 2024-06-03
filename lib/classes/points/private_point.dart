@@ -1,5 +1,6 @@
 import 'package:crazy_places/classes/air/aq_class.dart';
 import 'package:crazy_places/classes/points/location_point.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
@@ -10,19 +11,19 @@ class PrivatePoint extends LocationPoint {
   PrivatePoint({
     required double lat,
     required double lang,
-    required String pathLogo,
+    required Icon icon,
     required String name,
     required this.description,
   }) : super(
     lat: lat,
     lang: lang,
-    pathLogo: pathLogo,
+    icon: icon,
     name: name,
   );
 
   @override
   String toString() {
-    return 'PrivatePoint(lat: $lat, lang: $lang, pathLogo: $pathLogo, name: $name, description: $description)';
+    return 'PrivatePoint(lat: $lat, lang: $lang, pathLogo: $icon, name: $name, description: $description)';
   }
 
   Future<int> fetchData() async {
