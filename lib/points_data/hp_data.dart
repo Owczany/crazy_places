@@ -5,7 +5,7 @@ List<HistoricalPoint> historicalPoints = [
   HistoricalPoint(
     lat: 43.7230,
     lang: 10.3966,
-    icon: Icon(
+    icon: const Icon(
       Icons.mosque_rounded,
       color: Colors.red,
       size: 50,
@@ -17,7 +17,7 @@ List<HistoricalPoint> historicalPoints = [
   HistoricalPoint(
     lat: 48.8584,
     lang: 2.2945,
-    icon: Icon(
+    icon: const Icon(
       Icons.mosque_rounded,
       color: Colors.red,
       size: 50,

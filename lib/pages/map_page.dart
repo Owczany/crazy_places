@@ -101,7 +101,7 @@ class _MapPageState extends State<MapPage> {
     for (var marker in markers) {
       if ((point.latitude - marker.lat).abs() < 0.2 &&
           (point.longitude - marker.lang).abs() < 0.2) {
-        _showMarkerDialog(marker.name, "elo");
+        _showMarkerDialog(marker.name, marker.description);
         break;
       }
     }

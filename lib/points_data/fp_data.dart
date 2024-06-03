@@ -5,9 +5,9 @@ List<FunnyPoint> funnyPoints = [
   FunnyPoint(
     lat: 53.197744,
     lang: 18.373484,
-    icon: Icon(
-      Icons.mosque_rounded,
-      color: Colors.red,
+    icon: const Icon(
+      Icons.forest,
+      color: Colors.green,
       size: 20,
     ),
     name: "Paweł Jumper",
