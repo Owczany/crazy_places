@@ -99,8 +99,9 @@ class _MapPageState extends State<MapPage> {
 
   void _checkMarkerClick(GeoPoint point) {
     for (var marker in markers) {
-      if ((point.latitude - marker.lat).abs() < 0.2 &&
-          (point.longitude - marker.lang).abs() < 0.2) {
+      print("dystans ${marker.distanceTo(point.latitude, point.longitude)}");
+      if ((point.latitude - marker.lat).abs() < 0.1 &&
+          (point.longitude - marker.lang).abs() < 0.1) {
         _showMarkerDialog(marker.name, marker.description);
         break;
       }
