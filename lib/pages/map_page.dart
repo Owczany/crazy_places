@@ -21,6 +21,7 @@ class _MapPageState extends State<MapPage> {
   );
 
   GeoPoint? userLocation;
+  List<GeoPoint> markers = [];
 
   Future<void> _getUserLocation() async {
     bool serviceEnabled;
@@ -66,43 +67,85 @@ class _MapPageState extends State<MapPage> {
               size: 20,
             ),
           ));
+      markers.add(userLocation!);
+
       for (var historicalPoint in historicalPoints) {
+        final point = GeoPoint(
+          latitude: historicalPoint.lat,
+          longitude: historicalPoint.lang,
+        );
         await controller.addMarker(
-          GeoPoint(
-            latitude: historicalPoint.lat,
-            longitude: historicalPoint.lang,
-          ),
+          point,
           markerIcon: const MarkerIcon(
             icon: Icon(
               Icons.mosque_rounded,
               color: Colors.red,
-              size: 20,
+              size: 40,
             ),
           ),
         );
+        markers.add(point);
       }
       for (var funnyPoint in funnyPoints) {
+        final point = GeoPoint(
+          latitude: funnyPoint.lat,
+          longitude: funnyPoint.lang,
+        );
         await controller.addMarker(
-          GeoPoint(
-            latitude: funnyPoint.lat,
-            longitude: funnyPoint.lang,
-          ),
+          point,
           markerIcon: const MarkerIcon(
             icon: Icon(
               Icons.forest_rounded,
               color: Colors.green,
-              size: 20,
+              size: 40,
             ),
           ),
         );
+        markers.add(point);
       }
     }
+  }
+
+  void _checkMarkerClick(GeoPoint point) {
+    for (var marker in markers) {
+      if ((point.latitude - marker.latitude).abs() < 0.2 &&
+          (point.longitude - marker.longitude).abs() < 0.2) {
+        _showMarkerDialog();
+        break;
+      }
+    }
+  }
+
+  void _showMarkerDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Marker Clicked'),
+          content: const Text('You clicked on a marker!'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   void initState() {
     super.initState();
     _getUserLocation();
+    controller.listenerMapSingleTapping.addListener(() async {
+      var position = controller.listenerMapSingleTapping.value;
+      if (position != null) {
+        _checkMarkerClick(position);
+      }
+    });
   }
 
   @override
@@ -116,7 +159,6 @@ class _MapPageState extends State<MapPage> {
     return Scaffold(
       body: OSMFlutter(
         controller: controller,
-        // mapIsLoading: const Center(child: CircularProgressIndicator()), /* Chore gówno co nie działa */
         onMapIsReady: (isReady) async {
           if (isReady) {
             if (userLocation != null) {
