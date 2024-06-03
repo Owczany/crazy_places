@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FunnyPoint extends LocationPoint {
-  String description;
   String pathYT;
 
   FunnyPoint({
@@ -11,13 +10,14 @@ class FunnyPoint extends LocationPoint {
     required double lang,
     required Icon icon,
     required String name,
-    required this.description,
+    required String description,
     required this.pathYT,
   }) : super(
     lat: lat,
     lang: lang,
     icon: icon,
     name: name,
+    description: description,
   );
 
   @override

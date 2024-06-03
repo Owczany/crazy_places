@@ -3,7 +3,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class HistoricalPoint extends LocationPoint{
-  String description;
   String musicPath;
 
   HistoricalPoint({
@@ -11,13 +10,14 @@ class HistoricalPoint extends LocationPoint{
     required double lang,
     required Icon icon,
     required String name,
-    required this.description,
+    required String description,
     required this.musicPath,
   }) : super(
     lat: lat,
     lang: lang,
     icon: icon,
     name: name,
+    description: description,
   );
 
   @override
