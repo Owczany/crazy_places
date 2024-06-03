@@ -1,5 +1,6 @@
 import 'package:crazy_places/points_data/fp_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:crazy_places/points_data/hp_data.dart';
@@ -12,12 +13,12 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-
-  final controller = MapController(
-      initPosition: GeoPoint(
-    latitude: 47.4358055,
-    longitude: 8.4737324,
-  ));
+  final controller = MapController.withPosition(
+    initPosition: GeoPoint(
+      latitude: 47.4358055,
+      longitude: 8.4737324,
+    ),
+  );
 
   GeoPoint? userLocation;
 
@@ -57,14 +58,43 @@ class _MapPageState extends State<MapPage> {
 
   Future<void> _addMarkers() async {
     if (userLocation != null) {
-      await controller.addMarker(userLocation!);
+      await controller.addMarker(userLocation!,
+          markerIcon: const MarkerIcon(
+            icon: Icon(
+              Icons.person_pin_circle,
+              color: Colors.blue,
+              size: 20,
+            ),
+          ));
       for (var historicalPoint in historicalPoints) {
-        await controller.addMarker(GeoPoint(
-            latitude: historicalPoint.lat, longitude: historicalPoint.lang));
+        await controller.addMarker(
+          GeoPoint(
+            latitude: historicalPoint.lat,
+            longitude: historicalPoint.lang,
+          ),
+          markerIcon: const MarkerIcon(
+            icon: Icon(
+              Icons.mosque_rounded,
+              color: Colors.red,
+              size: 20,
+            ),
+          ),
+        );
       }
       for (var funnyPoint in funnyPoints) {
-        await controller.addMarker(GeoPoint(
-            latitude: funnyPoint.lat, longitude: funnyPoint.lang));
+        await controller.addMarker(
+          GeoPoint(
+            latitude: funnyPoint.lat,
+            longitude: funnyPoint.lang,
+          ),
+          markerIcon: const MarkerIcon(
+            icon: Icon(
+              Icons.forest_rounded,
+              color: Colors.green,
+              size: 20,
+            ),
+          ),
+        );
       }
     }
   }
@@ -87,9 +117,10 @@ class _MapPageState extends State<MapPage> {
       body: OSMFlutter(
         controller: controller,
         // mapIsLoading: const Center(child: CircularProgressIndicator()), /* Chore gówno co nie działa */
-        onMapIsReady: (isReady) {
+        onMapIsReady: (isReady) async {
           if (isReady) {
             if (userLocation != null) {
+              await controller.currentLocation();
               _addMarkers();
             }
           }
@@ -105,28 +136,13 @@ class _MapPageState extends State<MapPage> {
             maxZoomLevel: 19,
             stepZoom: 1.0,
           ),
-          userLocationMarker: UserLocationMaker(
-            personMarker: const MarkerIcon(
-              icon: Icon(
-                Icons.location_history_rounded,
-                color: Colors.red,
-                size: 48,
-              ),
-            ),
-            directionArrowMarker: const MarkerIcon(
-              icon: Icon(
-                Icons.double_arrow,
-                size: 48,
-              ),
-            ),
-          ),
           roadConfiguration: const RoadOption(
             roadColor: Colors.yellowAccent,
           ),
           markerOption: MarkerOption(
-              defaultMarker: MarkerIcon(
+              defaultMarker: const MarkerIcon(
             icon: Icon(
-              Icons.person_pin_circle,
+              Icons.home,
               color: Colors.blue,
               size: 56,
             ),
