@@ -6,19 +6,18 @@ import 'dart:convert';
 import 'dart:async';
 
 class PrivatePoint extends LocationPoint {
-  String description;
-
   PrivatePoint({
     required double lat,
     required double lang,
     required Icon icon,
     required String name,
-    required this.description,
+    required String description,
   }) : super(
     lat: lat,
     lang: lang,
     icon: icon,
     name: name,
+    description: description,
   );
 
   @override
