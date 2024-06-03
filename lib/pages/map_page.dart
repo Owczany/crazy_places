@@ -1,6 +1,8 @@
+import 'package:crazy_places/points_data/fp_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:crazy_places/points_data/hp_data.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -10,15 +12,6 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  // MapController mapController = MapController(
-  //   initPosition: GeoPoint(latitude: 47.4358055, longitude: 8.4737324),
-  //   areaLimit: BoundingBox(
-  //     east: 10.4922941,
-  //     north: 47.8084648,
-  //     south: 45.817995,
-  //     west: 5.9559113,
-  //   ),
-  // );
 
   final controller = MapController(
       initPosition: GeoPoint(
@@ -57,6 +50,7 @@ class _MapPageState extends State<MapPage> {
       userLocation =
           GeoPoint(latitude: position.latitude, longitude: position.longitude);
       controller.goToLocation(userLocation!);
+      controller.setZoom(stepZoom: 10);
       _addMarkers();
     });
   }
@@ -64,10 +58,14 @@ class _MapPageState extends State<MapPage> {
   Future<void> _addMarkers() async {
     if (userLocation != null) {
       await controller.addMarker(userLocation!);
-      await controller.addMarker(GeoPoint(
-          latitude: 52.229676, longitude: 21.012229)); // Example point 1
-      await controller.addMarker(GeoPoint(
-          latitude: 50.0646501, longitude: 19.9449799)); // Example point 2
+      for (var historicalPoint in historicalPoints) {
+        await controller.addMarker(GeoPoint(
+            latitude: historicalPoint.lat, longitude: historicalPoint.lang));
+      }
+      for (var funnyPoint in funnyPoints) {
+        await controller.addMarker(GeoPoint(
+            latitude: funnyPoint.lat, longitude: funnyPoint.lang));
+      }
     }
   }
 
@@ -81,7 +79,6 @@ class _MapPageState extends State<MapPage> {
   void dispose() {
     super.dispose();
     controller.dispose();
-    // mapController.dispose();
   }
 
   @override
@@ -89,7 +86,7 @@ class _MapPageState extends State<MapPage> {
     return Scaffold(
       body: OSMFlutter(
         controller: controller,
-        // mapIsLoading: const Center(child: CircularProgressIndicator()),
+        // mapIsLoading: const Center(child: CircularProgressIndicator()), /* Chore gówno co nie działa */
         onMapIsReady: (isReady) {
           if (isReady) {
             if (userLocation != null) {
@@ -108,6 +105,32 @@ class _MapPageState extends State<MapPage> {
             maxZoomLevel: 19,
             stepZoom: 1.0,
           ),
+          userLocationMarker: UserLocationMaker(
+            personMarker: const MarkerIcon(
+              icon: Icon(
+                Icons.location_history_rounded,
+                color: Colors.red,
+                size: 48,
+              ),
+            ),
+            directionArrowMarker: const MarkerIcon(
+              icon: Icon(
+                Icons.double_arrow,
+                size: 48,
+              ),
+            ),
+          ),
+          roadConfiguration: const RoadOption(
+            roadColor: Colors.yellowAccent,
+          ),
+          markerOption: MarkerOption(
+              defaultMarker: MarkerIcon(
+            icon: Icon(
+              Icons.person_pin_circle,
+              color: Colors.blue,
+              size: 56,
+            ),
+          )),
         ),
       ),
     );

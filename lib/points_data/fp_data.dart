@@ -1,6 +1,6 @@
 import 'package:crazy_places/classes/points/funny_point.dart';
 
-List<FunnyPoint> listaFP = [
+List<FunnyPoint> funnyPoints = [
   FunnyPoint(
     lat: 53.197744,
     lang: 18.373484,

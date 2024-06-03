@@ -1,6 +1,6 @@
 import 'package:crazy_places/classes/points/historical_point.dart';
 
-List<HistoricalPoint> listaHP = [
+List<HistoricalPoint> historicalPoints = [
   HistoricalPoint(
     lat: 43.7230,
     lang: 10.3966,
