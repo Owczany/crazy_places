@@ -1,3 +1,5 @@
+import 'package:crazy_places/classes/components/alert_dialogs/historical_alert.dart';
+import 'package:crazy_places/classes/points/historical_point.dart';
 import 'package:crazy_places/classes/points/location_point.dart';
 import 'package:crazy_places/points_data/fp_data.dart';
 import 'package:flutter/material.dart';
@@ -163,8 +165,15 @@ class _MapPageState extends State<MapPage> {
         },
         onGeoPointClicked: (GeoPoint geoPoint) {
           if (mapMarkers[geoPoint] != null) {
-            _showMarkerDialog(
-                mapMarkers[geoPoint]!.name, mapMarkers[geoPoint]!.description);
+            if(mapMarkers[geoPoint] is HistoricalPoint){
+              HistoricalAlert temp = HistoricalAlert(mapMarkers[geoPoint] as HistoricalPoint);
+              temp.showAlert(context);
+            }
+            else{
+              _showMarkerDialog(
+                  mapMarkers[geoPoint]!.name, mapMarkers[geoPoint]!.description);
+            }
+
           } else {}
         },
         osmOption: OSMOption(
