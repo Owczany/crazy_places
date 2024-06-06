@@ -138,6 +138,7 @@ class _MapPageState extends State<MapPage> {
         _checkMarkerClick(position);
       }
     });
+    // controller.listenerMapSingleTapping.
   }
 
   @override
