@@ -41,6 +41,7 @@ dependencies:
   latlng: ^2.0.7
   flutter_osm_plugin: ^0.70.4
   audioplayers: ^5.1.0
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:

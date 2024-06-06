@@ -1,4 +1,6 @@
+import 'package:crazy_places/classes/components/alert_dialogs/funny_alert.dart';
 import 'package:crazy_places/classes/components/alert_dialogs/historical_alert.dart';
+import 'package:crazy_places/classes/points/funny_point.dart';
 import 'package:crazy_places/classes/points/historical_point.dart';
 import 'package:crazy_places/classes/points/location_point.dart';
 import 'package:crazy_places/points_data/fp_data.dart';
@@ -169,6 +171,11 @@ class _MapPageState extends State<MapPage> {
               HistoricalAlert temp = HistoricalAlert(mapMarkers[geoPoint] as HistoricalPoint);
               temp.showAlert(context);
             }
+            if(mapMarkers[geoPoint] is FunnyPoint){
+              FunnyAlert temp = FunnyAlert(mapMarkers[geoPoint] as FunnyPoint);
+              temp.showAlert(context);
+            }
+
             else{
               _showMarkerDialog(
                   mapMarkers[geoPoint]!.name, mapMarkers[geoPoint]!.description);
