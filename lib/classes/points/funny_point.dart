@@ -1,6 +1,5 @@
 import 'package:crazy_places/classes/points/location_point.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class FunnyPoint extends LocationPoint {
   String pathYT;
@@ -23,14 +22,5 @@ class FunnyPoint extends LocationPoint {
   @override
   String toString() {
     return 'FunnyPoint(lat: $lat, lang: $lang, pathLogo: $icon, name: $name, description: $description, pathYT: $pathYT)';
-  }
-
-  void launchYoutubeVideo() async {
-    String url = pathYT;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

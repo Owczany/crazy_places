@@ -21,24 +21,26 @@ class FunnyAlert {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
             TextButton(
               onPressed: () async {
-                final url = funnyPoint.pathYT;
-                if (await canLaunch(url)) {
-                  await launch(url);
+                final url = Uri.parse(funnyPoint.pathYT);
+                Navigator.of(context).pop();
+                if (!await canLaunchUrl(url)) {
+                  launchUrl(url, mode: LaunchMode.externalApplication);
                 } else {
                   // Jeśli link jest niepoprawny, możesz pokazać błąd lub inny komunikat
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Nie można otworzyć linku: $url'),
-                    ),
-                  );
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Nie można otworzyć linku: $url'),
+                      ),
+                    );
+                  }
                 }
-                Navigator.of(context).pop();
               },
-              child: Text('Przejdź do YT'),
+              child: const Text('Przejdź do YT'),
             ),
           ],
         );
