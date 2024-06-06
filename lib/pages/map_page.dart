@@ -22,7 +22,7 @@ class _MapPageState extends State<MapPage> {
   );
 
   GeoPoint? userLocation;
-  List<LocationPoint> markers = [];
+  Map<GeoPoint, LocationPoint> mapMarkers = {};
 
   Future<void> _getUserLocation() async {
     bool serviceEnabled;
@@ -60,14 +60,16 @@ class _MapPageState extends State<MapPage> {
 
   Future<void> _addMarkers() async {
     if (userLocation != null) {
-      await controller.addMarker(userLocation!,
-          markerIcon: const MarkerIcon(
-            icon: Icon(
-              Icons.person_pin_circle,
-              color: Colors.blue,
-              size: 20,
-            ),
-          ),);
+      await controller.addMarker(
+        userLocation!, // Adding user marker
+        markerIcon: const MarkerIcon(
+          icon: Icon(
+            Icons.person_pin_circle,
+            color: Colors.blue,
+            size: 40,
+          ),
+        ),
+      );
       for (var historicalPoint in historicalPoints) {
         final point = GeoPoint(
           latitude: historicalPoint.lat,
@@ -79,7 +81,7 @@ class _MapPageState extends State<MapPage> {
             icon: historicalPoint.icon,
           ),
         );
-        markers.add(historicalPoint);
+        mapMarkers[point] = historicalPoint;
       }
       for (var funnyPoint in funnyPoints) {
         final point = GeoPoint(
@@ -92,21 +94,21 @@ class _MapPageState extends State<MapPage> {
             icon: funnyPoint.icon,
           ),
         );
-        markers.add(funnyPoint);
-        }
-    }
-  }
-
-  void _checkMarkerClick(GeoPoint point) {
-    for (var marker in markers) {
-      print("dystans ${marker.distanceTo(point.latitude, point.longitude)}");
-      if ((point.latitude - marker.lat).abs() < 0.1 &&
-          (point.longitude - marker.lang).abs() < 0.1) {
-        _showMarkerDialog(marker.name, marker.description);
-        break;
+        mapMarkers[point] = funnyPoint;
       }
     }
   }
+
+  // void _checkMarkerClick(GeoPoint point) {
+  //   for (var marker in markers) {
+  //     print("dystans ${marker.distanceTo(point.latitude, point.longitude)}");
+  //     if ((point.latitude - marker.lat).abs() < 0.1 &&
+  //         (point.longitude - marker.lang).abs() < 0.1) {
+  //       _showMarkerDialog(marker.name, marker.description);
+  //       break;
+  //     }
+  //   }
+  // }
 
   void _showMarkerDialog(String? placeName, String? description) {
     showDialog(
@@ -132,13 +134,12 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     super.initState();
     _getUserLocation();
-    controller.listenerMapSingleTapping.addListener(() async {
-      var position = controller.listenerMapSingleTapping.value;
-      if (position != null) {
-        _checkMarkerClick(position);
-      }
-    });
-    // controller.listenerMapSingleTapping.
+    // controller.listenerMapSingleTapping.addListener(() async {
+    //   var position = controller.listenerMapSingleTapping.value;
+    //   if (position != null) {
+    //     _checkMarkerClick(position);
+    //   }
+    // });
   }
 
   @override
@@ -161,7 +162,10 @@ class _MapPageState extends State<MapPage> {
           }
         },
         onGeoPointClicked: (GeoPoint geoPoint) {
-          _checkMarkerClick(geoPoint);
+          if (mapMarkers[geoPoint] != null) {
+            _showMarkerDialog(
+                mapMarkers[geoPoint]!.name, mapMarkers[geoPoint]!.description);
+          } else {}
         },
         osmOption: OSMOption(
           userTrackingOption: const UserTrackingOption(
