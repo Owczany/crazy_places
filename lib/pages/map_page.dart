@@ -168,13 +168,10 @@ class _MapPageState extends State<MapPage> {
         onGeoPointClicked: (GeoPoint geoPoint) {
           if (mapMarkers[geoPoint] != null) {
             if (mapMarkers[geoPoint] is HistoricalPoint) {
-              HistoricalAlert temp =
-                  HistoricalAlert(mapMarkers[geoPoint] as HistoricalPoint);
-              temp.showAlert(context);
+              HistoricalAlert(mapMarkers[geoPoint] as HistoricalPoint).showAlert(context);
             }
-            if (mapMarkers[geoPoint] is FunnyPoint) {
-              FunnyAlert temp = FunnyAlert(mapMarkers[geoPoint] as FunnyPoint);
-              temp.showAlert(context);
+            else if (mapMarkers[geoPoint] is FunnyPoint) {
+              FunnyAlert(mapMarkers[geoPoint] as FunnyPoint).showAlert(context);
             } else {
               _showMarkerDialog(mapMarkers[geoPoint]!.name,
                   mapMarkers[geoPoint]!.description);
