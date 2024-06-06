@@ -39,8 +39,8 @@ List<FunnyPoint> funnyPoints = [
     ),
     name: "Dobrze chłopaki robią",
     description:
-        "Jeden z najbardziej znanych punktów na YouTubowej mapie kraju. Jako ciekawsotkę warto wyjaśnić skąd taka złość u dowódcy. Wóz BWP-1 przedstawiony na filmie jest wozem bardzo przestarzałym. Z tego powodu, od kilkunastu lat w całym kraju brakuje części zamiennych do wozu. Dlatego prawdą było stwierdzenie: 'Takiego [błotnika] już nie dostanę'.",
+        "Najsłynniejszy remont Legnicy, ale nie ma co się przejmować bo dobrze chłopaki robią, dobry przekaz leci.",
     pathYT:
-        "https://www.youtube.com/watch?v=fc3qeAuxeuo&t=6s&ab_channel=thefocus",
+        "https://www.youtube.com/watch?v=RsiC3ymj9Zc&ab_channel=RapPolskiePodziemie",
   ),
 ];
