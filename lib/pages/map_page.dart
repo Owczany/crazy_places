@@ -93,7 +93,7 @@ class _MapPageState extends State<MapPage> {
           ),
         );
         markers.add(funnyPoint);
-      }
+        }
     }
   }
 
@@ -159,6 +159,9 @@ class _MapPageState extends State<MapPage> {
               _addMarkers();
             }
           }
+        },
+        onGeoPointClicked: (GeoPoint geoPoint) {
+          _checkMarkerClick(geoPoint);
         },
         osmOption: OSMOption(
           userTrackingOption: const UserTrackingOption(
