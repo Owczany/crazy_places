@@ -167,20 +167,18 @@ class _MapPageState extends State<MapPage> {
         },
         onGeoPointClicked: (GeoPoint geoPoint) {
           if (mapMarkers[geoPoint] != null) {
-            if(mapMarkers[geoPoint] is HistoricalPoint){
-              HistoricalAlert temp = HistoricalAlert(mapMarkers[geoPoint] as HistoricalPoint);
+            if (mapMarkers[geoPoint] is HistoricalPoint) {
+              HistoricalAlert temp =
+                  HistoricalAlert(mapMarkers[geoPoint] as HistoricalPoint);
               temp.showAlert(context);
             }
-            if(mapMarkers[geoPoint] is FunnyPoint){
+            if (mapMarkers[geoPoint] is FunnyPoint) {
               FunnyAlert temp = FunnyAlert(mapMarkers[geoPoint] as FunnyPoint);
               temp.showAlert(context);
+            } else {
+              _showMarkerDialog(mapMarkers[geoPoint]!.name,
+                  mapMarkers[geoPoint]!.description);
             }
-
-            else{
-              _showMarkerDialog(
-                  mapMarkers[geoPoint]!.name, mapMarkers[geoPoint]!.description);
-            }
-
           } else {}
         },
         osmOption: OSMOption(
