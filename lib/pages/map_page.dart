@@ -1,9 +1,11 @@
 import 'package:crazy_places/classes/components/alert_dialogs/add_private_point.dart';
 import 'package:crazy_places/classes/components/alert_dialogs/funny_alert.dart';
 import 'package:crazy_places/classes/components/alert_dialogs/historical_alert.dart';
+import 'package:crazy_places/classes/components/alert_dialogs/private_alert.dart';
 import 'package:crazy_places/classes/points/funny_point.dart';
 import 'package:crazy_places/classes/points/historical_point.dart';
 import 'package:crazy_places/classes/points/location_point.dart';
+import 'package:crazy_places/classes/points/private_point.dart';
 import 'package:crazy_places/points_data/fp_data.dart';
 import 'package:crazy_places/points_data/pp_data.dart';
 import 'package:flutter/material.dart';
@@ -202,7 +204,11 @@ class _MapPageState extends State<MapPage> {
             }
             else if (mapMarkers[geoPoint] is FunnyPoint) {
               FunnyAlert(mapMarkers[geoPoint] as FunnyPoint).showAlert(context);
-            } else {
+            }
+            else if (mapMarkers[geoPoint] is PrivatePoint) {
+              PrivateAlert(mapMarkers[geoPoint] as PrivatePoint).showAlert(context);
+            }
+            else {
               _showMarkerDialog(mapMarkers[geoPoint]!.name,
                   mapMarkers[geoPoint]!.description);
             }
