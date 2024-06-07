@@ -1,3 +1,5 @@
+import 'package:crazy_places/classes/points/private_point.dart';
+import 'package:crazy_places/functions/hive_fun.dart';
 import 'package:flutter/material.dart';
 
 class AddPrivatePointAlert {
@@ -34,6 +36,16 @@ class AddPrivatePointAlert {
               onPressed: () {
                 if (nameController.text.isNotEmpty &&
                     descController.text.isNotEmpty) {
+                  addPoint2List(
+                    PrivatePoint(
+                        lat: latitude,
+                        lang: longitude,
+                        icon: Icon(Icons.add),
+                        name: nameController.text,
+                        description: descController.text),
+                    "default",
+                  );
+                  wypiszPunkty();
                   print('git');
                 } else {
                   print('nie git');

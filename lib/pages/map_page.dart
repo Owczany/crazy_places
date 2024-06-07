@@ -5,6 +5,7 @@ import 'package:crazy_places/classes/points/funny_point.dart';
 import 'package:crazy_places/classes/points/historical_point.dart';
 import 'package:crazy_places/classes/points/location_point.dart';
 import 'package:crazy_places/points_data/fp_data.dart';
+import 'package:crazy_places/points_data/pp_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
@@ -101,6 +102,20 @@ class _MapPageState extends State<MapPage> {
         );
         mapMarkers[point] = funnyPoint;
       }
+      for (var privatePoint in privatePoints) {
+        final point = GeoPoint(
+          latitude: privatePoint.lat,
+          longitude: privatePoint.lang,
+        );
+        await controller.addMarker(
+          point,
+          markerIcon: MarkerIcon(
+            icon: privatePoint.icon,
+          ),
+        );
+        mapMarkers[point] = privatePoint;
+      }
+
     }
   }
 
@@ -136,8 +151,11 @@ class _MapPageState extends State<MapPage> {
   }
   void _handleLongPress(GeoPoint geoPoint) {
     print('Lat: ${geoPoint.latitude}, Lang: ${geoPoint.longitude}');
-    AddPrivatePointAlert(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
-        .showAlert(context);
+    setState(() {
+      AddPrivatePointAlert(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
+          .showAlert(context);
+    });
+
   }
 
   @override
