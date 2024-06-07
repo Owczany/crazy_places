@@ -6,8 +6,8 @@ List<FunnyPoint> funnyPoints = [
     lat: 53.197744,
     lang: 18.373484,
     icon: const Icon(
-      Icons.forest,
-      color: Colors.green,
+      Icons.pedal_bike,
+      color: Colors.red,
       size: 40,
     ),
     name: "Paweł Jumper",
@@ -19,8 +19,8 @@ List<FunnyPoint> funnyPoints = [
     lat: 51.4706915,
     lang: 15.3938231,
     icon: const Icon(
-      Icons.forest,
-      color: Colors.green,
+      Icons.military_tech,
+      color: Colors.red,
       size: 40,
     ),
     name: "Chorąży zepsuł błotnik",
@@ -33,8 +33,8 @@ List<FunnyPoint> funnyPoints = [
     lat: 51.208617,
     lang: 16.151040,
     icon: const Icon(
-      Icons.forest,
-      color: Colors.green,
+      Icons.construction,
+      color: Colors.red,
       size: 40,
     ),
     name: "Dobrze chłopaki robią",

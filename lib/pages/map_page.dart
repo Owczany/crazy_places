@@ -1,3 +1,4 @@
+import 'package:crazy_places/classes/components/alert_dialogs/add_private_point.dart';
 import 'package:crazy_places/classes/components/alert_dialogs/funny_alert.dart';
 import 'package:crazy_places/classes/components/alert_dialogs/historical_alert.dart';
 import 'package:crazy_places/classes/points/funny_point.dart';
@@ -133,11 +134,22 @@ class _MapPageState extends State<MapPage> {
       },
     );
   }
+  void _handleLongPress(GeoPoint geoPoint) {
+    print('Lat: ${geoPoint.latitude}, Lang: ${geoPoint.longitude}');
+    AddPrivatePointAlert(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
+        .showAlert(context);
+  }
 
   @override
   void initState() {
     super.initState();
     _getUserLocation();
+    controller.listenerMapLongTapping.addListener(() async {
+      var position = controller.listenerMapLongTapping.value;
+      if (position != null) {
+        _handleLongPress(position);
+      }
+    });
     // controller.listenerMapSingleTapping.addListener(() async {
     //   var position = controller.listenerMapSingleTapping.value;
     //   if (position != null) {
