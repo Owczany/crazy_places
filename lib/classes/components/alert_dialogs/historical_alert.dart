@@ -1,3 +1,4 @@
+import 'package:crazy_places/classes/components/buttons/alert_button.dart';
 import 'package:crazy_places/classes/points/historical_point.dart';
 import 'package:flutter/material.dart';
 
@@ -17,13 +18,12 @@ class HistoricalAlert{
             child: Text(historicalPoint.description),
           ),
           actions: [
-            TextButton(
-              onPressed: () {
+            AlertButton(
+              title: "Okej",
+              fun: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
             ),
-
           ],
         );
       },
