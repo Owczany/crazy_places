@@ -26,6 +26,11 @@ class PrivateAlert{
           ),
           actions: [
             AlertButton(
+              title: "Usuń",
+              fun: () {
+                Navigator.of(context).pop();
+              },
+            ),AlertButton(
               title: "Okej",
               fun: () {
                 Navigator.of(context).pop();

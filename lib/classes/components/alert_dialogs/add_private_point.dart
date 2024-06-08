@@ -1,5 +1,6 @@
 import 'package:crazy_places/classes/points/private_point.dart';
 import 'package:crazy_places/functions/hive_fun.dart';
+import 'package:crazy_places/pages/map_page.dart';
 import 'package:flutter/material.dart';
 
 class AddPrivatePointAlert {
@@ -36,23 +37,35 @@ class AddPrivatePointAlert {
               onPressed: () {
                 if (nameController.text.isNotEmpty &&
                     descController.text.isNotEmpty) {
-                  addPoint2List(
-                    PrivatePoint(
-                        lat: latitude,
-                        lang: longitude,
-                        icon: Icon(Icons.add),
-                        name: nameController.text,
-                        description: descController.text),
-                    "default",
+                  final newPoint = PrivatePoint(
+                    lat: latitude,
+                    lang: longitude,
+                    icon: Icon(Icons.add),
+                    name: nameController.text,
+                    description: descController.text,
                   );
+                  addPoint2List(newPoint, "default");
                   wypiszPunkty();
                   print('git');
                 } else {
                   print('nie git');
                 }
-                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MapPage()),
+                );
               },
             ),
+            TextButton(
+              child: Text('anuluj'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MapPage()),
+                );
+              },
+            ),
+
           ],
         );
       },

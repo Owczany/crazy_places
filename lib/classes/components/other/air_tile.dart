@@ -13,15 +13,15 @@ class AirTile extends StatelessWidget {
     switch (air) {
       case 1:
         tileColor = Colors.green;
-        airQualityText = 'Jakość powietrza dobra';
+        airQualityText = 'Jakość powietrza: dobra';
         break;
       case 2:
         tileColor = Colors.yellow;
-        airQualityText = 'Jakość powietrza średnia';
+        airQualityText = 'Jakość powietrza: średnia';
         break;
       case 3:
         tileColor = Colors.red;
-        airQualityText = 'Jakość powietrza zła';
+        airQualityText = 'Jakość powietrza: zła';
         break;
       default:
         tileColor = Colors.blue;
@@ -29,6 +29,7 @@ class AirTile extends StatelessWidget {
     }
 
     return ListTile(
+      leading: Icon(Icons.air),
       tileColor: tileColor,
       title: Text(airQualityText),
     );

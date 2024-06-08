@@ -6,8 +6,8 @@ import 'package:crazy_places/classes/points/funny_point.dart';
 import 'package:crazy_places/classes/points/historical_point.dart';
 import 'package:crazy_places/classes/points/location_point.dart';
 import 'package:crazy_places/classes/points/private_point.dart';
+import 'package:crazy_places/functions/hive_fun.dart';
 import 'package:crazy_places/points_data/fp_data.dart';
-import 'package:crazy_places/points_data/pp_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
@@ -28,7 +28,7 @@ class _MapPageState extends State<MapPage> {
       longitude: 8.4737324,
     ),
   );
-
+  List<PrivatePoint> privatePoints = getPoints();
   GeoPoint? userLocation;
   Map<GeoPoint, LocationPoint> mapMarkers = {};
 
@@ -117,7 +117,6 @@ class _MapPageState extends State<MapPage> {
         );
         mapMarkers[point] = privatePoint;
       }
-
     }
   }
 
@@ -151,13 +150,16 @@ class _MapPageState extends State<MapPage> {
       },
     );
   }
+
   void _handleLongPress(GeoPoint geoPoint) {
     print('Lat: ${geoPoint.latitude}, Lang: ${geoPoint.longitude}');
     setState(() {
-      AddPrivatePointAlert(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
-          .showAlert(context);
+      AddPrivatePointAlert(
+        latitude: geoPoint.latitude,
+        longitude: geoPoint.longitude,
+      ).showAlert(context);
+      print(privatePoints);
     });
-
   }
 
   @override
@@ -200,15 +202,14 @@ class _MapPageState extends State<MapPage> {
         onGeoPointClicked: (GeoPoint geoPoint) {
           if (mapMarkers[geoPoint] != null) {
             if (mapMarkers[geoPoint] is HistoricalPoint) {
-              HistoricalAlert(mapMarkers[geoPoint] as HistoricalPoint).showAlert(context);
-            }
-            else if (mapMarkers[geoPoint] is FunnyPoint) {
+              HistoricalAlert(mapMarkers[geoPoint] as HistoricalPoint)
+                  .showAlert(context);
+            } else if (mapMarkers[geoPoint] is FunnyPoint) {
               FunnyAlert(mapMarkers[geoPoint] as FunnyPoint).showAlert(context);
-            }
-            else if (mapMarkers[geoPoint] is PrivatePoint) {
-              PrivateAlert(mapMarkers[geoPoint] as PrivatePoint).showAlert(context);
-            }
-            else {
+            } else if (mapMarkers[geoPoint] is PrivatePoint) {
+              PrivateAlert(mapMarkers[geoPoint] as PrivatePoint)
+                  .showAlert(context);
+            } else {
               _showMarkerDialog(mapMarkers[geoPoint]!.name,
                   mapMarkers[geoPoint]!.description);
             }

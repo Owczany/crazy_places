@@ -14,8 +14,12 @@ class HistoricalAlert{
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(historicalPoint.name),
-          content: Container(
-            child: Text(historicalPoint.description),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(historicalPoint.description),
+              ],
+            ),
           ),
           actions: [
             AlertButton(
