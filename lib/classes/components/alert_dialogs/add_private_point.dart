@@ -1,3 +1,4 @@
+import 'package:crazy_places/classes/components/buttons/alert_button.dart';
 import 'package:crazy_places/classes/points/private_point.dart';
 import 'package:crazy_places/functions/hive_fun.dart';
 import 'package:crazy_places/pages/map_page.dart';
@@ -12,12 +13,13 @@ class AddPrivatePointAlert {
   void showAlert(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController descController = TextEditingController();
+    String selectedCategory = 'dom';
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Center(child: Text('Add Private Point')),
+          title: Center(child: Text('Dodaj własny punkt')),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -29,12 +31,26 @@ class AddPrivatePointAlert {
                 controller: descController,
                 decoration: InputDecoration(labelText: 'desc'),
               ),
+              DropdownButtonFormField<String>(
+                value: selectedCategory,
+                decoration: InputDecoration(labelText: 'Kategoria'),
+                items: <String>['dom', 'szkoła', 'praca', 'hobby', 'inne']
+                    .map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (newValue) {
+                  selectedCategory = newValue!;
+                },
+              ),
             ],
           ),
           actions: <Widget>[
-            TextButton(
-              child: Text('ok'),
-              onPressed: () {
+            AlertButton(
+              title: 'ok',
+              fun: () {
                 if (nameController.text.isNotEmpty &&
                     descController.text.isNotEmpty) {
                   final newPoint = PrivatePoint(
@@ -44,7 +60,7 @@ class AddPrivatePointAlert {
                     name: nameController.text,
                     description: descController.text,
                   );
-                  addPoint2List(newPoint, "default");
+                  addPoint2List(newPoint, selectedCategory);
                   wypiszPunkty();
                   print('git');
                 } else {
@@ -56,9 +72,9 @@ class AddPrivatePointAlert {
                 );
               },
             ),
-            TextButton(
-              child: Text('anuluj'),
-              onPressed: () {
+            AlertButton(
+              title: 'anuluj',
+              fun: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const MapPage()),
