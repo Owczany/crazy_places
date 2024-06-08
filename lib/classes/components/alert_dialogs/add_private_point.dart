@@ -17,7 +17,7 @@ class AddPrivatePointAlert {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Add Private Point'),
+          title: Center(child: Text('Add Private Point')),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[

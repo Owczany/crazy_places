@@ -15,7 +15,7 @@ class PrivateAlert{
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(privatePoint.name),
+          title: Center(child: Text(privatePoint.name)),
           content: SingleChildScrollView(
             child: Column(
               children: [

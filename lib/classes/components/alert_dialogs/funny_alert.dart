@@ -13,7 +13,7 @@ class FunnyAlert {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(funnyPoint.name),
+          title: Center(child: Text(funnyPoint.name)),
           content: Container(
             child: Text(funnyPoint.description),
           ),
