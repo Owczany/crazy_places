@@ -2,6 +2,8 @@ import 'package:crazy_places/classes/components/buttons/alert_button.dart';
 import 'package:crazy_places/classes/components/other/air_tile.dart';
 
 import 'package:crazy_places/classes/points/private_point.dart';
+import 'package:crazy_places/functions/hive_fun.dart';
+import 'package:crazy_places/pages/map_page.dart';
 import 'package:flutter/material.dart';
 
 class PrivateAlert{
@@ -28,7 +30,11 @@ class PrivateAlert{
             AlertButton(
               title: "Usuń",
               fun: () {
-                Navigator.of(context).pop();
+                removePointFromList(privatePoint);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MapPage()),
+                );
               },
             ),AlertButton(
               title: "Okej",
