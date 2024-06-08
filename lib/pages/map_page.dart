@@ -7,6 +7,7 @@ import 'package:crazy_places/classes/points/historical_point.dart';
 import 'package:crazy_places/classes/points/location_point.dart';
 import 'package:crazy_places/classes/points/private_point.dart';
 import 'package:crazy_places/functions/hive_fun.dart';
+import 'package:crazy_places/pages/navigation.dart';
 import 'package:crazy_places/points_data/fp_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -189,6 +190,18 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Map Page'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const NavigationPage()),
+            );
+          },
+        ),
+      ),
       body: OSMFlutter(
         controller: controller,
         onMapIsReady: (isReady) async {

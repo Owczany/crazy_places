@@ -9,6 +9,7 @@ class FunnyAlert {
   FunnyAlert(this.funnyPoint);
 
   void showAlert(BuildContext context) {
+    funnyPoint.playSound();
     showDialog(
       context: context,
       builder: (BuildContext context) {
