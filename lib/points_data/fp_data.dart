@@ -46,4 +46,35 @@ List<FunnyPoint> funnyPoints = [
         "https://www.youtube.com/watch?v=RsiC3ymj9Zc&ab_channel=RapPolskiePodziemie",
     musicPath: "dobrze.mp3",
   ),
+  FunnyPoint(
+    lat: 51.594736,
+    lang: 18.733621,
+    icon: const Icon(
+      Icons.park,
+      color: Colors.red,
+      size: 40,
+    ),
+    name: "A komu to potrzebne",
+    description:
+        "Wywiad z Sieradza na temat legalizacji marihuanen.",
+    pathYT:
+        "https://www.youtube.com/watch?v=gPq5EY1O09g&ab_channel=siewie.tvSieradzkieWie%C5%9Bci",
+    musicPath: "mari.mp3",
+  ),
+  FunnyPoint(
+    lat: 51.648656,
+    lang: 17.815415,
+    icon: const Icon(
+      Icons.mic,
+      color: Colors.red,
+      size: 40,
+    ),
+    name: "Co Pana na codzień denerwuje",
+    description:
+        "Chemia mnie interesuje",
+    pathYT:
+        "https://www.youtube.com/watch?v=5pHDY7S-zmQ&ab_channel=OstroviaTV",
+    musicPath: "chemia.mp3",
+  ),
+
 ];
