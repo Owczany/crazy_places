@@ -1,4 +1,5 @@
 import 'package:crazy_places/classes/components/buttons/alert_button.dart';
+import 'package:crazy_places/classes/components/buttons/fav_button.dart';
 import 'package:crazy_places/classes/points/funny_point.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,7 +19,7 @@ class FunnyAlert {
           title: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [Text(funnyPoint.name), const Icon(Icons.star)],
+              children: [Text(funnyPoint.name), FavouriteButton()],
             ),
           ),
           content: Container(
