@@ -14,7 +14,13 @@ class FunnyAlert {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Center(child: Text(funnyPoint.name)),
+          // title: Center(child: Text(funnyPoint.name)),
+          title: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [Text(funnyPoint.name), const Icon(Icons.star)],
+            ),
+          ),
           content: Container(
             child: Text(funnyPoint.description),
           ),
