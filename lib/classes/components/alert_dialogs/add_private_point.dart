@@ -75,13 +75,9 @@ class AddPrivatePointAlert {
             AlertButton(
               title: 'anuluj',
               fun: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MapPage()),
-                );
+                Navigator.pop(context);
               },
             ),
-
           ],
         );
       },
