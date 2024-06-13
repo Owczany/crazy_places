@@ -30,7 +30,7 @@ class FunnyAlert {
               fun: () async {
                 final url = Uri.parse(funnyPoint.pathYT);
                 Navigator.of(context).pop();
-                if (!await canLaunchUrl(url)) {
+                if (await canLaunchUrl(url)) {
                   launchUrl(url, mode: LaunchMode.externalApplication);
                 } else {
                   // Jeśli link jest niepoprawny, możesz pokazać błąd lub inny komunikat
