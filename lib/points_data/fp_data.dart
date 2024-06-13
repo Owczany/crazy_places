@@ -55,8 +55,7 @@ List<FunnyPoint> funnyPoints = [
       size: 40,
     ),
     name: "A komu to potrzebne",
-    description:
-        "Wywiad z Sieradza na temat legalizacji marihuanen.",
+    description: "Wywiad z Sieradza na temat legalizacji marihuanen.",
     pathYT:
         "https://www.youtube.com/watch?v=gPq5EY1O09g&ab_channel=siewie.tvSieradzkieWie%C5%9Bci",
     musicPath: "mari.mp3",
@@ -70,11 +69,34 @@ List<FunnyPoint> funnyPoints = [
       size: 40,
     ),
     name: "Co Pana na codzień denerwuje",
-    description:
-        "Chemia mnie interesuje",
-    pathYT:
-        "https://www.youtube.com/watch?v=5pHDY7S-zmQ&ab_channel=OstroviaTV",
+    description: "Chemia mnie interesuje",
+    pathYT: "https://www.youtube.com/watch?v=5pHDY7S-zmQ&ab_channel=OstroviaTV",
     musicPath: "chemia.mp3",
   ),
-
+  FunnyPoint(
+    lat: 50.298821,
+    lang: 18.669870,
+    icon: const Icon(
+      Icons.computer,
+      color: Colors.red,
+      size: 40,
+    ),
+    name: "Bede grał w gre",
+    description: "Co planuje Pan robić w Sylwestra?",
+    pathYT: "https://www.youtube.com/watch?v=b0HF8M5UKdA&ab_channel=MrPhilos1000",
+    musicPath: "gre.mp3",
+  ),
+  FunnyPoint(
+    lat: 53.429107,
+    lang: 14.518359,
+    icon: const Icon(
+      Icons.car_crash,
+      color: Colors.red,
+      size: 40,
+    ),
+    name: "Ale urwał",
+    description: "Sroga zima i oblodzone drogi",
+    pathYT: "https://www.youtube.com/watch?v=IBFz7G2YfgI&ab_channel=Szajs",
+    musicPath: "ale.mp3",
+  ),
 ];
