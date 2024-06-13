@@ -41,9 +41,6 @@ class PrivatePoint extends LocationPoint {
         } else if (airQuality.aqi > 150) {
           return 3;
         }
-        //
-        // print(airQuality);
-        // return airQuality;
       }
       return 0;
     } on TimeoutException catch (e) {

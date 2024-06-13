@@ -12,7 +12,6 @@ class PrivateAlert{
   PrivateAlert(this.privatePoint);
 
   void showAlert(BuildContext context) async {
-    int air = await privatePoint.fetchData();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -22,7 +21,7 @@ class PrivateAlert{
             child: Column(
               children: [
                 Text(privatePoint.description),
-                AirTile(air: air),
+                AirTile(air: privatePoint),
               ],
             ),
           ),

@@ -1,37 +1,61 @@
+import 'package:crazy_places/classes/points/private_point.dart';
 import 'package:flutter/material.dart';
 
 class AirTile extends StatelessWidget {
-  final int air;
+  final PrivatePoint air;
 
-  AirTile({required this.air});
+  const AirTile({super.key, required this.air});
+
+  ListTile getListTile(int num) {
+    switch (num) {
+      case 1:
+        return const ListTile(
+          leading: Icon(Icons.air),
+          tileColor: Colors.green,
+          title: Text("Dobra"),
+        );
+      case 2:
+        return const ListTile(
+          leading: Icon(Icons.air),
+          tileColor: Colors.yellow,
+          title: Text("Średnia"),
+        );
+      case 3:
+        return const ListTile(
+          leading: Icon(Icons.air),
+          tileColor: Colors.green,
+          title: Text("Słaba"),
+        );
+      default:
+        return const ListTile(
+          leading: Icon(Icons.air),
+          tileColor: Colors.green,
+          title: Text("Nie znam"),
+        );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    Color tileColor;
-    String airQualityText;
-
-    switch (air) {
-      case 1:
-        tileColor = Colors.green;
-        airQualityText = 'Jakość powietrza: dobra';
-        break;
-      case 2:
-        tileColor = Colors.yellow;
-        airQualityText = 'Jakość powietrza: średnia';
-        break;
-      case 3:
-        tileColor = Colors.red;
-        airQualityText = 'Jakość powietrza: zła';
-        break;
-      default:
-        tileColor = Colors.blue;
-        airQualityText = 'Brak danych';
-    }
-
-    return ListTile(
-      leading: Icon(Icons.air),
-      tileColor: tileColor,
-      title: Text(airQualityText),
+    return FutureBuilder<int>(
+      future: air.fetchData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const ListTile(
+            leading: Icon(Icons.air),
+            tileColor: Colors.teal,
+            title: Text("Getting Data"),
+          );
+        } else if (snapshot.hasError) {
+          return const ListTile(
+            leading: Icon(Icons.air),
+            tileColor: Colors.orange,
+            title: Text("Error"),
+          );
+        } else {
+          return getListTile(snapshot.data!);
+        }
+      },
     );
   }
 }
