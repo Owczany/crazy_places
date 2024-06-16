@@ -12,11 +12,13 @@ class PrivateAlert{
   PrivateAlert(this.privatePoint);
 
   void showAlert(BuildContext context) async {
+    bool klik = false;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Center(child: Text(privatePoint.name)),
+          title: StarDialog(privatePoint: privatePoint),
+
           content: SingleChildScrollView(
             child: Column(
               children: [
@@ -44,6 +46,42 @@ class PrivateAlert{
           ],
         );
       },
+    );
+  }
+}
+
+class StarDialog extends StatefulWidget {
+  final PrivatePoint privatePoint;
+
+  const StarDialog({Key? key, required this.privatePoint}) : super(key: key);
+
+  @override
+  _StarDialogState createState() => _StarDialogState();
+}
+
+class _StarDialogState extends State<StarDialog> {
+  bool klik = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Center(child: Text(widget.privatePoint.name)),
+        Positioned(
+          right: 0.0,
+          top: -10.0,
+          child: IconButton(
+            icon: Icon(klik ? Icons.star : Icons.star_border,
+            color: klik ? Colors.blueAccent : Colors.black,
+            ),
+            onPressed: () {
+              setState(() {
+                klik = !klik;
+              });
+            },
+          ),
+        ),
+      ],
     );
   }
 }
