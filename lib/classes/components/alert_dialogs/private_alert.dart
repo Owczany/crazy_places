@@ -77,6 +77,7 @@ class _StarDialogState extends State<StarDialog> {
             onPressed: () {
               setState(() {
                 klik = !klik;
+                //tutaj ma być logika do dodawania punktów do listy ulubionych
               });
             },
           ),
