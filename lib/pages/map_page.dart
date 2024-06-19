@@ -191,7 +191,8 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Map Page'),
+        backgroundColor: Colors.green,
+        title: Center(child: Text('Map Page')),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

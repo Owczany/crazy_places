@@ -67,21 +67,21 @@ class _StarDialogState extends State<StarDialog> {
     return Stack(
       children: [
         Center(child: Text(widget.privatePoint.name)),
-        Positioned(
-          right: 0.0,
-          top: -10.0,
-          child: IconButton(
-            icon: Icon(klik ? Icons.star : Icons.star_border,
-            color: klik ? Colors.blueAccent : Colors.black,
-            ),
-            onPressed: () {
-              setState(() {
-                klik = !klik;
-                //tutaj ma być logika do dodawania punktów do listy ulubionych
-              });
-            },
-          ),
-        ),
+        // Positioned(
+        //   right: 0.0,
+        //   top: -10.0,
+        //   child: IconButton(
+        //     icon: Icon(klik ? Icons.star : Icons.star_border,
+        //     color: klik ? Colors.blueAccent : Colors.black,
+        //     ),
+        //     onPressed: () {
+        //       setState(() {
+        //         klik = !klik;
+        //         //tutaj ma być logika do dodawania punktów do listy ulubionych
+        //       });
+        //     },
+        //   ),
+        // ),
       ],
     );
   }

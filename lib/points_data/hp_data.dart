@@ -6,8 +6,8 @@ List<HistoricalPoint> historicalPoints = [
     lat: 43.7230,
     lang: 10.3966,
     icon: const Icon(
-      Icons.mosque_rounded,
-      color: Colors.red,
+      Icons.history_edu,
+      color: Colors.brown,
       size: 50,
     ),
     name: "Krzywa Wieża w Pizie",
@@ -19,8 +19,8 @@ List<HistoricalPoint> historicalPoints = [
     lat: 48.8584,
     lang: 2.2945,
     icon: const Icon(
-      Icons.mosque_rounded,
-      color: Colors.red,
+      Icons.history_edu,
+      color: Colors.brown,
       size: 50,
     ),
     name: "Wieża Eiffla",
@@ -32,8 +32,8 @@ List<HistoricalPoint> historicalPoints = [
     lat: 40.748058,
     lang: -73.985300,
     icon: const Icon(
-      Icons.mosque_rounded,
-      color: Colors.red,
+      Icons.history_edu,
+      color: Colors.brown,
       size: 50,
     ),
     name: "Empire State Building",
@@ -45,8 +45,8 @@ List<HistoricalPoint> historicalPoints = [
     lat: 30.328078,
     lang: 35.443864,
     icon: const Icon(
-      Icons.mosque_rounded,
-      color: Colors.red,
+      Icons.history_edu,
+      color: Colors.brown,
       size: 50,
     ),
     name: "Petra",

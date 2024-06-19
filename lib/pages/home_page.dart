@@ -1,3 +1,4 @@
+import 'package:crazy_places/classes/components/buttons/alert_button.dart';
 import 'package:crazy_places/pages/map_page.dart';
 import 'package:flutter/material.dart';
 
@@ -15,12 +16,12 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         color: Colors.green,
         child: Center(
-          child: ElevatedButton(
-              onPressed: () => Navigator.push(
+          child: AlertButton(
+              fun: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const MapPage()),
                   ),
-              child: const Text("Mapa")),
+              title: "Mapa"),
         ),
       ),
     );

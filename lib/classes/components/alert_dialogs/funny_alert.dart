@@ -19,7 +19,7 @@ class FunnyAlert {
           title: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [Text(funnyPoint.name), FavouriteButton()],
+              children: [Text(funnyPoint.name)],//, FavouriteButton()
             ),
           ),
           content: Container(
