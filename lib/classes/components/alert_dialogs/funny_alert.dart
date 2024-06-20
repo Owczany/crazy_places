@@ -17,9 +17,16 @@ class FunnyAlert {
         return AlertDialog(
           // title: Center(child: Text(funnyPoint.name)),
           title: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [Text(funnyPoint.name), FavouriteButton(isClicked: false, onTap: (bool isFav) {},)],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                FavouriteButton(
+                  isClicked: false,
+                  onTap: (bool isFav) {},
+                ),
+                Text(funnyPoint.name),
+              ],
             ),
           ),
           content: Container(
