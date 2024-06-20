@@ -8,12 +8,12 @@ import 'package:crazy_places/classes/points/location_point.dart';
 import 'package:crazy_places/classes/points/private_point.dart';
 import 'package:crazy_places/functions/hive_fun.dart';
 import 'package:crazy_places/pages/navigation.dart';
-import 'package:crazy_places/points_data/fp_data.dart';
+import 'package:crazy_places/data/points_data/fp_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:crazy_places/points_data/hp_data.dart';
+import 'package:crazy_places/data/points_data/hp_data.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});

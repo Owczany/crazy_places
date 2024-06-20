@@ -19,7 +19,7 @@ class FunnyAlert {
           title: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [Text(funnyPoint.name)],//, FavouriteButton()
+              children: [Text(funnyPoint.name), FavouriteButton(isClicked: false, onTap: (bool isFav) {},)],
             ),
           ),
           content: Container(
@@ -51,25 +51,6 @@ class FunnyAlert {
                 }
               },
             ),
-            // TextButton(
-            //   onPressed: () async {
-            //     final url = Uri.parse(funnyPoint.pathYT);
-            //     Navigator.of(context).pop();
-            //     if (!await canLaunchUrl(url)) {
-            //       launchUrl(url, mode: LaunchMode.externalApplication);
-            //     } else {
-            //       // Jeśli link jest niepoprawny, możesz pokazać błąd lub inny komunikat
-            //       if (context.mounted) {
-            //         ScaffoldMessenger.of(context).showSnackBar(
-            //           SnackBar(
-            //             content: Text('Nie można otworzyć linku: $url'),
-            //           ),
-            //         );
-            //       }
-            //     }
-            //   },
-            //   child: const Text('Przejdź do YT'),
-            // ),
           ],
         );
       },
